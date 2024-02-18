@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <string>
 
+/* В векторе целого типа заменить максимальный элемент суммой предыдущих элементов, минимальный – суммой последующих элементов */
+
 void lab2_task1(std::vector<int>& array)
 {
     auto max = std::max_element(array.begin(), array.end());
@@ -45,6 +47,8 @@ std::vector<unsigned int> find_all_substr_pos(std::string& str, std::string &sub
 
     return a_pos;
 }
+
+/* Дана строка слов. Сформируйте новую строку, вставив перед каждым из слов "а" и "но" запятую. Определите самую короткую подстроку */
 
 std::string lab2_task2(std::string& str)
 {
