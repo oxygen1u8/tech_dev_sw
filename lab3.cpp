@@ -26,61 +26,62 @@ protected:
 private:
 };
 
-class trunc_pyramid : public vol_figure {
+class regular_pyramid : public vol_figure {
 private:
-    double s1;
-    double s2;
+    double a;
     double h;
 public:
-    trunc_pyramid(double s1, double s2, double h)
+    regular_pyramid(double a, double h)
     {
-        this->name = "Truncated pyramid";
+        this->name = "Regular pyramid";
 
-        this->s1 = s1;
-        this->s2 = s2;
+        this->a = a;
         this->h = h;
     }
 
     double calculate_volume() override
     {
-        this->vol = (double) 1/3 * h * (this->s1 + this->s2 + sqrt(this->s1 * this->s2));
+        this->vol = (double) 1/3 * h * a * a * sqrt(3)/4;
         return this->vol;
     }
 };
 
-class prism : public vol_figure {
+class cuboid : public vol_figure {
 private:
-    double s;
-    double h;
+    double a;
+    double b;
+    double c;
 public:
-    prism(double s, double h)
+    cuboid(double a, double b, double c)
     {
-        this->name = "Prism";
+        this->name = "Cuboid";
 
-        this->s = s;
-        this->h = h;
+        this->a = a;
+        this->b = b;
+        this->c = c;
     }
 
     double calculate_volume() override
     {
-        this->vol = (double) this->s * this->h;
+        this->vol = a * b * c;
         return this->vol;
     }
 };
 
-class hollow_ball : public vol_figure {
+class hollow_cylinder : public vol_figure {
 private:
     double r;
+    double h;
 public:
-    hollow_ball(double r)
+    hollow_cylinder(double r, double h)
     {
-        this->name = "Hollow ball";
+        this->name = "Hollow cylinder";
         this->r = r;
     }
 
     double calculate_volume() override
     {
-        this->vol = (double) 4/3 * M_PI * r * r * r;
+        this->vol = (double) M_PI * r * r * h;
         return this->vol;
     }
 };
@@ -89,9 +90,9 @@ int main()
 {
     srand(time(0));
 
-    trunc_pyramid tp(1, 2, 3);
-    prism p(5, 10);
-    hollow_ball hb(4);
+    cuboid tp(1, 2, 3);
+    regular_pyramid p(5, 10);
+    hollow_cylinder hb(4, 6);
 
     std::vector<vol_figure *> array;
     array.push_back(dynamic_cast<vol_figure*>(&tp));

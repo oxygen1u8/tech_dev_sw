@@ -47,10 +47,7 @@ class magazine {
 private:
     std::string name;
 public: 
-    magazine(std::string magazine_name) : name(magazine_name)
-    {
-
-    }
+    
 };
 
 int main()

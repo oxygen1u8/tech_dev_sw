@@ -14,24 +14,37 @@ public:
     {
         this->vec = vec;
     }
-    void operator()()
+    T operator()()
     {
-        double avg = 1;
-        std::for_each(vec.begin(), vec.end(), [&avg](const T& m) { avg *= m; });
-        this->avg_val = std::pow(avg, (double) 1 / vec.size());
+        auto tmp = std::find_if(vec.begin(), vec.end(), [](const T& m) -> bool
+            {
+                if (m < 2)
+                    return false;
+                else if (m == 2) {
+                    return true;
+                }
+                for (unsigned int i = 2; i <= sqrt(m); i++) { 
+                    if (m % i == 0) {
+                        return false;
+                    } 
+                }
+                return true;
+            }
+        );
 
-        std::cout << this->avg_val << std::endl;
+        return *tmp;
     }
 private:
     std::vector<T> vec;
-    double avg_val;
 };
 
 int main()
 {
-    std::vector<int> a = {4, 9, 16};
+    std::vector<int> a = {9, 16, 3, 7};
     lab5<int> l(a);
-    l();
+    auto result = l();
+
+    std::cout << "The first prime num is " << result << std::endl;
     return 0;
 }
 

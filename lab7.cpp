@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <numeric>
 #include <random>
+#include <cmath>
 
 #define ELEMENT_COUNT 23
 #define FIRST_ELEMENT 12
@@ -63,6 +64,27 @@ int main()
     std::cout << std::endl;
 
     std::cout << "TASK 2" << std::endl;
+
+    int x, y, z;
+    std::cin >> x >> y >> z;
+
+    std::vector<int> X = {1, -2, 3, -4, 5};
+    std::vector<int> Y = {-5, 4, -3, 2, -1};
+    std::vector<int> Z = {-3, 2, 4, 1, -5};
+    
+    int _x[X.size()];
+    int _y[Y.size()];
+    int _z[Z.size()];
+
+    std::partial_sum(X.begin(), X.end(), _x);
+    std::partial_sum(Y.begin(), Y.end(), _y);
+    std::partial_sum(Z.begin(), Z.end(), _z);
+
+    for (uint32_t i = 0; i < X.size(); i++) {
+        std::cout << "X" << i + 1 << ": " << std::abs(x + _x[i]) << "\t";
+        std::cout << "Y" << i + 1 << ": " << std::abs(y + _y[i]) << "\t";
+        std::cout << "Z" << i + 1 << ": " << std::abs(z + _z[i]) << "\n";
+    }
 
     return 0;
 }
