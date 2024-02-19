@@ -19,14 +19,16 @@ void lab2_task1(std::vector<int>& array)
     }
     
     if (min != array.end()) {
-        min++;
-        for (auto i = min; i != array.end(); i++) {
+        for (auto i = min + 1; i != array.end(); i++) {
             sum_min += *i;
         }
     }
 
+    *max = sum_max;
+    *min = sum_min;
+
     std::cout << "Sum before max element: " << sum_max << std::endl;
-    std::cout << "Sum before min element: " << sum_min << std::endl;
+    std::cout << "Sum min element: " << sum_min << std::endl;
 }
 
 std::vector<unsigned int> find_all_substr_pos(std::string& str, std::string &substr)
@@ -92,6 +94,11 @@ int main()
     std::vector<int> a = {5, 6, 0, 4, 8, 2, 3, -9, 7, -3, -2, -1};
 
     lab2_task1(a);
+
+    for (const auto &i: a) {
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
 
     std::string str = "Kak zhe tak pochemu ya debil a on net no ya ne samiy tupoi a on samiy no ya luchse no ti loh a ya net";
 

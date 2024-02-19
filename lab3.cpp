@@ -77,10 +77,12 @@ public:
     {
         this->name = "Hollow cylinder";
         this->r = r;
+        this->h = h;
     }
 
     double calculate_volume() override
     {
+        auto tmp = r * r * h;
         this->vol = (double) M_PI * r * r * h;
         return this->vol;
     }
